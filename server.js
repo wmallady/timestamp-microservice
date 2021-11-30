@@ -34,11 +34,12 @@ app.get("/api/:date?", function(req, res){
     const isUnix = timestamp * 1; // convert string to number
     date = isNaN(isUnix) ? new Date(timestamp) : new Date(isUnix); 
     // 1. check if converted timestamp is a number
-    // 2. if so, 
+    // 2. if truthy, timestamp (string) is set to date
+    // 3. if falsy, timestamp (unix number) is set to date 
   }
 
-  if(date == ""){
-    res.json({"error":"Invalid Date"});
+  if(date == "string"){
+    res.json({"error":"Invalid Date"}); //checks if date is an invalid string
   }
   else {
     const unix = date.getTime();
